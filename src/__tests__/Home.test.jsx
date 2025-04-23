@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter} from "react-router-dom";
 import routes from "../routes";
+import { test, expect } from "vitest";
 
 const router = createMemoryRouter(routes)
 
@@ -22,7 +23,7 @@ test("Displays a list of movie titles", async () =>{
 
 test("Displays links for each associated movie", async () =>{
   render(<RouterProvider router={router}/>);
-  const linkList = await screen.findAllByText(/View Info/);
+  const linkList = await screen.findAllByText(/View Movie/);
   expect(linkList.length).toBeGreaterThan(2);
   expect(linkList[0].href.split("/").slice(3).join("/")).toBe("movie/1");
 })
